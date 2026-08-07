@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>MediCare - Paciente</title>
+</head>
+<body>
+
+    <h1>Panel de Paciente</h1>
+    <p>Bienvenido a MediCare.</p>
+    
+    <a th:href="@{/paciente/citas/nueva}"
+   class="btn btn-primary">
+    Agendar Cita
+    </a>
+
+    <a th:href="@{/paciente/citas/historial}"
+       class="btn btn-secondary">
+        Ver Historial
+    </a>
+
+</body>
+</html>

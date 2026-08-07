@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Nueva Cita - MediCare</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+</head>
+
+<body>
+
+<div class="container mt-5">
+
+    <h2>Agendar Cita Médica</h2>
+
+    <div th:if="${error}"
+         class="alert alert-danger"
+         th:text="${error}">
+    </div>
+
+    <form th:action="@{/paciente/citas/guardar}"
+          th:object="${cita}"
+          method="post">
+
+        <div class="mb-3">
+
+            <label class="form-label">
+                Especialidad
+            </label>
+
+            <select class="form-select"
+                    th:field="*{especialidad}"
+                    required>
+
+                <option value="">
+                    Seleccione una especialidad
+                </option>
+
+                <option th:each="especialidad : ${especialidades}"
+                        th:value="${especialidad}"
+                        th:text="${especialidad}">
+                </option>
+
+            </select>
+
+        </div>
+
+        <div class="mb-3">
+
+            <label class="form-label">
+                Fecha y Hora
+            </label>
+
+            <input type="datetime-local"
+                   class="form-control"
+                   th:field="*{fechaHora}"
+                   required>
+
+        </div>
+
+        <div class="mb-3">
+
+            <label class="form-label">
+                Costo
+            </label>
+
+            <input type="number"
+                   step="0.01"
+                   class="form-control"
+                   th:field="*{costo}"
+                   required>
+
+        </div>
+
+        <button type="submit"
+                class="btn btn-primary">
+            Agendar Cita
+        </button>
+
+        <a th:href="@{/paciente/inicio}"
+           class="btn btn-secondary">
+            Volver
+        </a>
+
+    </form>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Historial de Citas - MediCare</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+</head>
+
+<body>
+
+<div class="container mt-5">
+
+    <h2>Historial de Citas</h2>
+
+    <a th:href="@{/paciente/citas/nueva}"
+       class="btn btn-primary mb-3">
+        Nueva Cita
+    </a>
+
+    <a th:href="@{/paciente/inicio}"
+       class="btn btn-secondary mb-3">
+        Volver
+    </a>
+
+    <table class="table table-bordered">
+
+        <thead>
+            <tr>
+                <th>Especialidad</th>
+                <th>Fecha y Hora</th>
+                <th>Costo</th>
+                <th>Estado</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            <tr th:each="cita : ${citas}">
+                <td th:text="${cita.especialidad}"></td>
+                <td th:text="${cita.fechaHora}"></td>
+                <td th:text="${cita.costo}"></td>
+                <td th:text="${cita.estado}"></td>
+            </tr>
+
+        </tbody>
+
+    </table>
+
+</div>
+
+</body>
+</html>
