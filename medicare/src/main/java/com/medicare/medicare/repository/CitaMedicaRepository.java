@@ -34,4 +34,6 @@ public interface CitaMedicaRepository extends JpaRepository<CitaMedica, Long> {
         LocalDateTime fechaHora);
     
     List<CitaMedica> findByPacienteIdOrderByFechaHoraDesc(Long pacienteId);
+    
+    List<CitaMedica> findByEstado(String estado);
 }

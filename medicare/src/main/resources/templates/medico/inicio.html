@@ -1,13 +1,44 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>MediCare - Médico</title>
-</head>
-<body>
 
-    <h1>Panel de Médico</h1>
-    <p>Bienvenido a MediCare.</p>
+<head th:replace="~{fragments/general :: head('MediCare - Médico')}"></head>
+
+<body class="bg-light">
+
+<nav th:replace="~{fragments/general :: navbar}"></nav>
+
+<div class="container py-5">
+
+    <div class="mb-4">
+        <h2 class="fw-bold">Panel Médico</h2>
+        <p class="text-muted">
+            Consulta y gestiona las citas médicas programadas.
+        </p>
+    </div>
+
+    <div class="card shadow-sm border-0">
+
+        <div class="card-body p-4">
+
+            <h4>Gestión de Citas</h4>
+
+            <p class="text-muted">
+                Visualiza las citas pendientes y cambia su estado
+                cuando sean atendidas o canceladas.
+            </p>
+
+            <a th:href="@{/medico/citas}"
+               class="btn btn-primary">
+                Ver Citas Programadas
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+<footer th:replace="~{fragments/general :: footer}"></footer>
 
 </body>
 </html>

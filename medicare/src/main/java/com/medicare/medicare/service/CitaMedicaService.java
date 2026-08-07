@@ -10,14 +10,20 @@ import org.springframework.stereotype.Service;
 public class CitaMedicaService {
 
     private final CitaMedicaRepository citaMedicaRepository;
+    private final CorreoService correoService;
 
-    public CitaMedicaService(CitaMedicaRepository citaMedicaRepository) {
+    public CitaMedicaService(
+            CitaMedicaRepository citaMedicaRepository,
+            CorreoService correoService) {
+
         this.citaMedicaRepository = citaMedicaRepository;
+        this.correoService = correoService;
     }
 
     public CitaMedica registrarCita(CitaMedica cita) {
 
         if (!cita.getFechaHora().isAfter(LocalDateTime.now())) {
+
             throw new CitaMedicaException(
                     "La fecha y hora de la cita debe ser futura.");
         }
@@ -28,10 +34,22 @@ public class CitaMedicaService {
                         cita.getFechaHora());
 
         if (citaExistente) {
+
             throw new CitaMedicaException(
                     "El paciente ya tiene una cita agendada en esa fecha y hora.");
         }
 
-        return citaMedicaRepository.save(cita);
+        CitaMedica citaGuardada = citaMedicaRepository.save(cita);
+
+        correoService.enviarCorreo(
+                cita.getPaciente().getEmail(),
+                "Cita registrada - MediCare",
+                "Su cita de "
+                + cita.getEspecialidad()
+                + " fue registrada para "
+                + cita.getFechaHora()
+        );
+
+        return citaGuardada;
     }
 }

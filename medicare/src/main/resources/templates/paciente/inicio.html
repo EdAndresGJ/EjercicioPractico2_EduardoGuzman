@@ -1,23 +1,81 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>MediCare - Paciente</title>
-</head>
-<body>
 
-    <h1>Panel de Paciente</h1>
-    <p>Bienvenido a MediCare.</p>
-    
-    <a th:href="@{/paciente/citas/nueva}"
-   class="btn btn-primary">
-    Agendar Cita
-    </a>
+<head th:replace="~{fragments/general :: head('MediCare - Paciente')}"></head>
 
-    <a th:href="@{/paciente/citas/historial}"
-       class="btn btn-secondary">
-        Ver Historial
-    </a>
+<body class="bg-light">
+
+<nav th:replace="~{fragments/general :: navbar}"></nav>
+
+<div class="container py-5">
+
+    <div class="mb-4">
+        <h2 class="fw-bold">Panel del Paciente</h2>
+        <p class="text-muted">
+            Gestiona tus citas médicas desde aquí.
+        </p>
+    </div>
+
+    <div class="row g-4">
+
+        <div class="col-md-6">
+            <div class="card shadow-sm border-0 h-100">
+
+                <div class="card-body p-4">
+
+                    <h4 class="card-title">
+                        Agendar Cita
+                    </h4>
+
+                    <p class="card-text text-muted">
+                        Programa una nueva cita seleccionando especialidad,
+                        fecha y hora.
+                    </p>
+
+                    <a th:href="@{/paciente/citas/nueva}"
+                       class="btn btn-primary">
+                        Agendar Cita
+                    </a>
+
+                </div>
+
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card shadow-sm border-0 h-100">
+
+                <div class="card-body p-4">
+
+                    <h4 class="card-title">
+                        Historial de Citas
+                    </h4>
+
+                    <p class="card-text text-muted">
+                        Consulta tus citas programadas, completadas
+                        y canceladas.
+                    </p>
+
+                    <a th:href="@{/paciente/citas/historial}"
+                       class="btn btn-outline-primary">
+                        Ver Historial
+                    </a>
+                    
+                    <a th:href="@{/paciente/dashboard}"
+                        class="btn btn-outline-primary mt-2">
+                         Ver Dashboard
+                    </a>
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<footer th:replace="~{fragments/general :: footer}"></footer>
 
 </body>
 </html>

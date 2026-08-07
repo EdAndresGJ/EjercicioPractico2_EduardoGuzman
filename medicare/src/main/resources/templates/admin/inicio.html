@@ -1,13 +1,60 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>MediCare - Administrador</title>
-</head>
-<body>
 
-    <h1>Panel de Administrador</h1>
-    <p>Bienvenido a MediCare.</p>
+<head th:replace="~{fragments/general :: head('MediCare - Administrador')}"></head>
+
+<body class="bg-light">
+
+<nav th:replace="~{fragments/general :: navbar}"></nav>
+
+<div class="container py-5">
+
+    <h2 class="fw-bold mb-1">Panel de Administración</h2>
+    <p class="text-muted mb-4">Gestión general del sistema MediCare.</p>
+
+    <div class="row g-4">
+
+        <div class="col-md-4">
+            <div class="card shadow-sm border-0 h-100">
+                <div class="card-body p-4">
+                    <h4>Usuarios</h4>
+                    <p class="text-muted">Consulta y administra los usuarios.</p>
+                    <a th:href="@{/admin/usuarios}" class="btn btn-primary">
+                        Gestionar Usuarios
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card shadow-sm border-0 h-100">
+                <div class="card-body p-4">
+                    <h4>Roles</h4>
+                    <p class="text-muted">Consulta los roles del sistema.</p>
+                    <a th:href="@{/admin/roles}" class="btn btn-primary">
+                        Gestionar Roles
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card shadow-sm border-0 h-100">
+                <div class="card-body p-4">
+                    <h4>Citas</h4>
+                    <p class="text-muted">Consulta todas las citas médicas.</p>
+                    <a th:href="@{/admin/citas}" class="btn btn-primary">
+                        Gestionar Citas
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<footer th:replace="~{fragments/general :: footer}"></footer>
 
 </body>
 </html>

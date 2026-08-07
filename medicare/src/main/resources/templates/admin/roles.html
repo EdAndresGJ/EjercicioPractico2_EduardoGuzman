@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragments/general :: head('Roles')}"></head>
+
+<body class="bg-light">
+
+<nav th:replace="~{fragments/general :: navbar}"></nav>
+
+<div class="container py-5">
+
+    <h2>Roles</h2>
+
+    <a th:href="@{/admin/inicio}" class="btn btn-secondary mb-3">
+        Volver
+    </a>
+
+    <table class="table table-bordered bg-white">
+
+        <thead class="table-primary">
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Acción</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="rol : ${roles}">
+            <td th:text="${rol.id}"></td>
+            <td th:text="${rol.nombre}"></td>
+            <td>
+                <a th:href="@{/admin/roles/eliminar/{id}(id=${rol.id})}"
+                   class="btn btn-danger btn-sm">
+                    Eliminar
+                </a>
+            </td>
+        </tr>
+        </tbody>
+
+    </table>
+
+</div>
+
+<footer th:replace="~{fragments/general :: footer}"></footer>
+
+</body>
+</html>

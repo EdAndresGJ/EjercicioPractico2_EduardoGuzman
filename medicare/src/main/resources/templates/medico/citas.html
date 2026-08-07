@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Citas Programadas - MediCare</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+</head>
+
+<body>
+
+<div class="container mt-5">
+
+    <h2>Citas Programadas</h2>
+
+    <a th:href="@{/medico/inicio}"
+       class="btn btn-secondary mb-3">
+        Volver
+    </a>
+
+    <table class="table table-bordered">
+
+        <thead>
+        <tr>
+            <th>Paciente</th>
+            <th>Especialidad</th>
+            <th>Fecha</th>
+            <th>Costo</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+        </tr>
+        </thead>
+
+        <tbody>
+
+        <tr th:each="cita : ${citas}">
+
+            <td th:text="${cita.paciente.nombre}"></td>
+            <td th:text="${cita.especialidad}"></td>
+            <td th:text="${cita.fechaHora}"></td>
+            <td th:text="${cita.costo}"></td>
+            <td th:text="${cita.estado}"></td>
+
+            <td>
+
+                <a th:href="@{/medico/citas/completar/{id}(id=${cita.id})}"
+                   class="btn btn-success btn-sm">
+                    Completar
+                </a>
+
+                <a th:href="@{/medico/citas/cancelar/{id}(id=${cita.id})}"
+                   class="btn btn-danger btn-sm">
+                    Cancelar
+                </a>
+
+            </td>
+
+        </tr>
+
+        </tbody>
+
+    </table>
+
+</div>
+
+</body>
+</html>

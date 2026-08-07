@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragments/general :: head('Dashboard - MediCare')}"></head>
+
+<body class="bg-light">
+
+<nav th:replace="~{fragments/general :: navbar}"></nav>
+
+<div class="container py-5">
+
+    <h2 class="fw-bold">Dashboard de Citas</h2>
+    <p class="text-muted mb-4">
+        Resumen de citas médicas de los próximos meses.
+    </p>
+
+    <div class="row g-3 mb-5">
+
+        <div class="col-md-3">
+            <div class="card shadow-sm border-0 text-center">
+                <div class="card-body">
+                    <h6 class="text-muted">Cardiología</h6>
+                    <h2 th:text="${cardiologia}">0</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card shadow-sm border-0 text-center">
+                <div class="card-body">
+                    <h6 class="text-muted">Dermatología</h6>
+                    <h2 th:text="${dermatologia}">0</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card shadow-sm border-0 text-center">
+                <div class="card-body">
+                    <h6 class="text-muted">Pediatría</h6>
+                    <h2 th:text="${pediatria}">0</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card shadow-sm border-0 text-center">
+                <div class="card-body">
+                    <h6 class="text-muted">Neurología</h6>
+                    <h2 th:text="${neurologia}">0</h2>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="card shadow-sm border-0">
+
+        <div class="card-body">
+
+            <h4 class="mb-3">Mis Citas Programadas</h4>
+
+            <table class="table table-striped">
+
+                <thead>
+                <tr>
+                    <th>Especialidad</th>
+                    <th>Fecha</th>
+                    <th>Costo</th>
+                    <th>Estado</th>
+                </tr>
+                </thead>
+
+                <tbody>
+
+                <tr th:each="cita : ${programadas}">
+                    <td th:text="${cita.especialidad}"></td>
+                    <td th:text="${cita.fechaHora}"></td>
+                    <td th:text="${cita.costo}"></td>
+                    <td>
+                        <span class="badge bg-primary"
+                              th:text="${cita.estado}">
+                        </span>
+                    </td>
+                </tr>
+
+                </tbody>
+
+            </table>
+
+            <a th:href="@{/paciente/inicio}"
+               class="btn btn-secondary">
+                Volver
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+<footer th:replace="~{fragments/general :: footer}"></footer>
+
+</body>
+</html>
