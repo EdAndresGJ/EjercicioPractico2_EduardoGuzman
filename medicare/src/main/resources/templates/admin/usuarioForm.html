@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragments/general :: head('Usuario - MediCare')}"></head>
+
+<body class="bg-light">
+
+<nav th:replace="~{fragments/general :: navbar}"></nav>
+
+<div class="container py-5">
+
+    <div class="row justify-content-center">
+
+        <div class="col-md-7">
+
+            <div class="card shadow-sm border-0">
+
+                <div class="card-body p-4">
+
+                    <h3 class="fw-bold mb-4">
+                        Datos del Usuario
+                    </h3>
+
+                    <form th:action="@{/admin/usuarios/guardar}"
+                          th:object="${usuario}"
+                          method="post">
+
+                        <input type="hidden"
+                               th:field="*{id}">
+
+                        <div class="mb-3">
+
+                            <label class="form-label">
+                                Nombre
+                            </label>
+
+                            <input type="text"
+                                   class="form-control"
+                                   th:field="*{nombre}"
+                                   required>
+
+                        </div>
+
+                        <div class="mb-3">
+
+                            <label class="form-label">
+                                Correo
+                            </label>
+
+                            <input type="email"
+                                   class="form-control"
+                                   th:field="*{email}"
+                                   required>
+
+                        </div>
+
+                        <div class="mb-3">
+
+                            <label class="form-label">
+                                Contraseña
+                            </label>
+
+                            <input type="text"
+                                   class="form-control"
+                                   th:field="*{password}"
+                                   required>
+
+                        </div>
+
+                        <div class="mb-3">
+
+                            <label class="form-label">
+                                Rol
+                            </label>
+
+                            <select class="form-select"
+                                    th:field="*{rol.id}"
+                                    required>
+
+                                <option value="">
+                                    Seleccione un rol
+                                </option>
+
+                                <option th:each="rol : ${roles}"
+                                        th:value="${rol.id}"
+                                        th:text="${rol.nombre}">
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                        <div class="form-check mb-4">
+
+                            <input type="checkbox"
+                                   class="form-check-input"
+                                   th:field="*{activo}">
+
+                            <label class="form-check-label">
+                                Usuario activo
+                            </label>
+
+                        </div>
+
+                        <button type="submit"
+                                class="btn btn-primary">
+                            Guardar
+                        </button>
+
+                        <a th:href="@{/admin/usuarios}"
+                           class="btn btn-secondary">
+                            Cancelar
+                        </a>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<footer th:replace="~{fragments/general :: footer}"></footer>
+
+</body>
+</html>

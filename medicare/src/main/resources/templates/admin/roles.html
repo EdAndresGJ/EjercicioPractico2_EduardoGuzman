@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace="~{fragments/general :: head('Roles')}"></head>
+<head th:replace="~{fragments/general :: head('Roles - MediCare')}"></head>
 
 <body class="bg-light">
 
@@ -9,36 +9,72 @@
 
 <div class="container py-5">
 
-    <h2>Roles</h2>
+    <div class="d-flex justify-content-between align-items-center mb-4">
 
-    <a th:href="@{/admin/inicio}" class="btn btn-secondary mb-3">
-        Volver
-    </a>
+        <div>
+            <h2 class="fw-bold mb-1">Roles</h2>
+            <p class="text-muted mb-0">
+                Administración de roles del sistema.
+            </p>
+        </div>
 
-    <table class="table table-bordered bg-white">
+        <a th:href="@{/admin/roles/nuevo}"
+           class="btn btn-primary">
+            Nuevo Rol
+        </a>
 
-        <thead class="table-primary">
-        <tr>
-            <th>ID</th>
-            <th>Nombre</th>
-            <th>Acción</th>
-        </tr>
-        </thead>
+    </div>
 
-        <tbody>
-        <tr th:each="rol : ${roles}">
-            <td th:text="${rol.id}"></td>
-            <td th:text="${rol.nombre}"></td>
-            <td>
-                <a th:href="@{/admin/roles/eliminar/{id}(id=${rol.id})}"
-                   class="btn btn-danger btn-sm">
-                    Eliminar
-                </a>
-            </td>
-        </tr>
-        </tbody>
+    <div class="card shadow-sm border-0">
 
-    </table>
+        <div class="card-body">
+
+            <table class="table table-striped align-middle">
+
+                <thead class="table-primary">
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Acciones</th>
+                </tr>
+                </thead>
+
+                <tbody>
+
+                <tr th:each="rol : ${roles}">
+
+                    <td th:text="${rol.id}"></td>
+
+                    <td th:text="${rol.nombre}"></td>
+
+                    <td>
+
+                        <a th:href="@{/admin/roles/editar/{id}(id=${rol.id})}"
+                           class="btn btn-warning btn-sm">
+                            Editar
+                        </a>
+
+                        <a th:href="@{/admin/roles/eliminar/{id}(id=${rol.id})}"
+                           class="btn btn-danger btn-sm">
+                            Eliminar
+                        </a>
+
+                    </td>
+
+                </tr>
+
+                </tbody>
+
+            </table>
+
+            <a th:href="@{/admin/inicio}"
+               class="btn btn-secondary">
+                Volver
+            </a>
+
+        </div>
+
+    </div>
 
 </div>
 

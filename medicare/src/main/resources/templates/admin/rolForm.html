@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragments/general :: head('Rol - MediCare')}"></head>
+
+<body class="bg-light">
+
+<nav th:replace="~{fragments/general :: navbar}"></nav>
+
+<div class="container py-5">
+
+    <div class="row justify-content-center">
+
+        <div class="col-md-6">
+
+            <div class="card shadow-sm border-0">
+
+                <div class="card-body p-4">
+
+                    <h3 class="fw-bold mb-4">
+                        Datos del Rol
+                    </h3>
+
+                    <form th:action="@{/admin/roles/guardar}"
+                          th:object="${rol}"
+                          method="post">
+
+                        <input type="hidden"
+                               th:field="*{id}">
+
+                        <div class="mb-4">
+
+                            <label class="form-label">
+                                Nombre
+                            </label>
+
+                            <input type="text"
+                                   class="form-control"
+                                   th:field="*{nombre}"
+                                   required>
+
+                        </div>
+
+                        <button type="submit"
+                                class="btn btn-primary">
+                            Guardar
+                        </button>
+
+                        <a th:href="@{/admin/roles}"
+                           class="btn btn-secondary">
+                            Cancelar
+                        </a>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<footer th:replace="~{fragments/general :: footer}"></footer>
+
+</body>
+</html>

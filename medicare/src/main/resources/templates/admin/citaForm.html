@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragments/general :: head('Cita Médica - MediCare')}"></head>
+
+<body class="bg-light">
+
+<nav th:replace="~{fragments/general :: navbar}"></nav>
+
+<div class="container py-5">
+
+    <div class="row justify-content-center">
+
+        <div class="col-md-7">
+
+            <div class="card shadow-sm border-0">
+
+                <div class="card-body p-4">
+
+                    <h3 class="fw-bold mb-4">
+                        Datos de la Cita
+                    </h3>
+
+                    <form th:action="@{/admin/citas/guardar}"
+                          th:object="${cita}"
+                          method="post">
+
+                        <input type="hidden"
+                               th:field="*{id}">
+
+                        <div class="mb-3">
+
+                            <label class="form-label">
+                                Paciente
+                            </label>
+
+                            <select class="form-select"
+                                    th:field="*{paciente.id}"
+                                    required>
+
+                                <option value="">
+                                    Seleccione un paciente
+                                </option>
+
+                                <option th:each="paciente : ${pacientes}"
+                                        th:value="${paciente.id}"
+                                        th:text="${paciente.nombre}">
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                        <div class="mb-3">
+
+                            <label class="form-label">
+                                Especialidad
+                            </label>
+
+                            <select class="form-select"
+                                    th:field="*{especialidad}"
+                                    required>
+
+                                <option value="">
+                                    Seleccione una especialidad
+                                </option>
+
+                                <option th:each="especialidad : ${especialidades}"
+                                        th:value="${especialidad}"
+                                        th:text="${especialidad}">
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                        <div class="mb-3">
+
+                            <label class="form-label">
+                                Fecha y Hora
+                            </label>
+
+                            <input type="datetime-local"
+                                   class="form-control"
+                                   th:field="*{fechaHora}"
+                                   required>
+
+                        </div>
+
+                        <div class="mb-3">
+
+                            <label class="form-label">
+                                Costo
+                            </label>
+
+                            <input type="number"
+                                   step="0.01"
+                                   class="form-control"
+                                   th:field="*{costo}"
+                                   required>
+
+                        </div>
+
+                        <div class="mb-4">
+
+                            <label class="form-label">
+                                Estado
+                            </label>
+
+                            <select class="form-select"
+                                    th:field="*{estado}"
+                                    required>
+
+                                <option th:each="estado : ${estados}"
+                                        th:value="${estado}"
+                                        th:text="${estado}">
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                        <button type="submit"
+                                class="btn btn-primary">
+                            Guardar
+                        </button>
+
+                        <a th:href="@{/admin/citas}"
+                           class="btn btn-secondary">
+                            Cancelar
+                        </a>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<footer th:replace="~{fragments/general :: footer}"></footer>
+
+</body>
+</html>
